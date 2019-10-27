@@ -69,6 +69,24 @@ common_bg_jobs() {
 }
 
 # Command execution time
+_command_time_preexec() {
+  timer=${timer:-$SECONDS}
+  export ZSH_COMMAND_TIME=""
+}
+
+_command_time_precmd() {
+  if [ $timer ]; then
+    timer_show=$(($SECONDS - $timer))
+    if [ -n "$TTY" ] && [ $timer_show -ge 1 ]; then
+      export ZSH_COMMAND_TIME="$timer_show"
+    fi
+    unset timer
+  fi
+}
+
+precmd_functions+=(_command_time_precmd)
+preexec_functions+=(_command_time_preexec)
+
 zsh_command_time() {
     if [ -n "$ZSH_COMMAND_TIME" ]; then
         hours=$(($ZSH_COMMAND_TIME/3600))
