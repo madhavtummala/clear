@@ -3,7 +3,7 @@
 <p align="center">A simple, fast and minimal prompt.</p>
 
 </br>
-<p align="center"><img src="Images/sample.png" width="864"></p>
+<p align="center"><img src="Images/sample.jpg"></p>
 
 #### Left Prompt
 * OS logo
